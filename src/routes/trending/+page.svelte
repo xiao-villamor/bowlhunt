@@ -8,27 +8,44 @@
     let loadmore = true;
 
     async function getMixes(page) {
-        const response = await fetch(`api/tobaccos?page=${page}`);
+        const response = await fetch(`api/mix?page=${page}`);
         return await response.json();
     }
 
     async function loadMoreMixes() {
         loading = true;
         pageNumber++;
-        const newMixes = await getMixes(pageNumber);
-        mixes = mixes.concat(newMixes);
-        loading = false;
-        const isLast = await getMixes(pageNumber+1);
-        isLast.length === 0 ? loadmore = false : loadmore = true;
-        console.log(loadmore)
+        try {
+            const newMixes = await getMixes(pageNumber);
+            mixes = mixes.concat(newMixes);
+            loading = false;
+
+            // Perform the following part in the background
+            checkLoadMore();
+        } catch (error) {
+            // Handle any errors that occur during the API call
+            console.error(error);
+            loading = false;
+        }
     }
+
+
+    async function checkLoadMore() {
+        try {
+            const isLast = await getMixes(pageNumber + 1);
+            loadmore = isLast.length !== 0;
+        } catch (error) {
+            // Handle any errors that occur during the API call
+            console.error(error);
+        }
+    }
+
 
 
     onMount(async () => {
         if (typeof window !== "undefined") {
             window.addEventListener("scroll", handleScroll);
         }
-
         await loadMoreMixes();
     });
 

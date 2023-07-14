@@ -113,7 +113,7 @@
 
 </style>
 
-<div class="flex flex-2 mix animate-fade-in w-75"  >
+<div class="flex w-72 shrink-0 mix animate-fade-in"  >
     <div class="card  bg-base-100 drop-shadow-xl overflow-hidden">
         <div class="h-80 flex flex-col items-center rounded-xl d ">
             {#each tobaccos as t}
@@ -126,14 +126,11 @@
                 </div>
             {/each}
 
-        <div class="card-body">
-            <h2 class="card-title ">{name}</h2>
+        <div class="card-body w-full">
             <div class="grid grid-cols-2 gap-2">
+                <h2 class="card-title w-32">{name}</h2>
 
-                <div class="card-actions justify-start items-center">
-                    <div class="badge badge-outline">Citric</div>
-                    <div class="badge badge-outline">Fruity</div>
-                </div>
+
                 <div class="card-actions justify-end items-center">
                     <button class="flex {isClicked ? 'bg-gray-300' : 'bg-base-100'}  items-center border border-gray-300 rounded-lg py-2 px-4 text-gray-500 hover:bg-gray-300 w-fit h-fit justify-end"  on:click={handleClick} class:active={isClicked}>
                         <span class="text-m">{likes}</span>
