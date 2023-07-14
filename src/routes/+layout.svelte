@@ -3,7 +3,7 @@
     import NavBar from "$lib/components/NavBar.svelte";
 </script>
 
-<html data-theme="garden" lang="es" class="mx-5">
+<html data-theme="garden" lang="es" class="md:mx-5">
 
 
     <NavBar navbar_id="my-drawer-2"/>
@@ -15,7 +15,7 @@
         </div>
         <div class="drawer-side z-50 ">
             <label for="my-drawer-2" class="drawer-overlay"></label>
-            <ul class="menu-vertical lg:menu  px-4 w-60 h-screen text-base-content bg-base-100  overflow-x-hidden">
+            <ul class="menu-vertical lg:menu  px-4 w-60 h-auto text-base-content bg-base-100  overflow-x-hidden">
                 <div class="form-control lg:hidden pt-10">
                     <input type="text" placeholder="Search" class="input input-bordered w-44 lg:hidden " />
                 </div>
