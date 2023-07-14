@@ -14,8 +14,8 @@ export const GET = async (event) => {
         }
 
         const tobaccos = await prisma.mix.findMany({
-                skip: page * 5,
-                take: 5,
+                skip: page * 20,
+                take: 20,
                 orderBy: {
                     createdAt: 'desc'
                 },
