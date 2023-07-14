@@ -1,12 +1,35 @@
 <script>
     import {onMount} from "svelte";
+    import { liked } from '../store.js';
+
 
     export let name;
     export let MixTobaccos;
 
+    export let likes;
+
+    let isClicked = false;
+
+
     let tobaccos = [];
     async function getTobacco(id) {
         const response = await fetch(`api/tobaco?id=${id}`);
+        return await response.json();
+    }
+
+    async function likeMix(id,likes) {
+        //do a post request to the api to like the mix the data shloud go in the body
+        const response = await fetch(`api/likes`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: id , likes: likes})
+            //set is data to the body
+
+
+
+        });
         return await response.json();
     }
 
@@ -18,13 +41,47 @@
             tobacco.percentage = mix[i].tobaccoPercentage;
             tobaccos.push(tobacco);
         }
-        console.log(tobaccos);
         return tobaccos
     }
 
     onMount(async () => {
         tobaccos = await getMixTobaccos(MixTobaccos);
+
+        liked.subscribe(n => {
+            const index = n.findIndex(x => x.id === MixTobaccos[0].mixId);
+            if (index !== -1) {
+                isClicked = n[index].liked;
+                likes = n[index].likes;
+            }
+        });
+
     });
+
+
+    function handleClick() {
+        isClicked = !isClicked;
+        likes = isClicked ? likes + 1 : likes - 1;
+        likeMix(MixTobaccos[0].mixId,likes);
+
+
+
+        //set in store the id of the mix that was liked and if it was liked or not
+        liked.update(n => {
+            const index = n.findIndex(x => x.id === MixTobaccos[0].mixId);
+
+            if (index === -1) {
+                const newLikedObject = { id: MixTobaccos[0].mixId, liked: isClicked, likes: likes };
+                n.push(newLikedObject);
+                localStorage.setItem('liked', JSON.stringify(n));
+            } else {
+                n[index].liked = isClicked;
+                n[index].likes = likes;
+                localStorage.liked = JSON.stringify(n);
+            }
+
+            return n;
+        });
+    }
 
 
 </script>
@@ -78,9 +135,9 @@
                     <div class="badge badge-outline">Fruity</div>
                 </div>
                 <div class="card-actions justify-end items-center">
-                    <button class="flex items-center border border-gray-500 rounded-lg py-2 px-4 text-gray-500 hover:bg-gray-200 w-fit h-fit justify-end">
-                        <span class="text-m">42</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 pl-2">
+                    <button class="flex {isClicked ? 'bg-gray-300' : 'bg-base-100'}  items-center border border-gray-300 rounded-lg py-2 px-4 text-gray-500 hover:bg-gray-300 w-fit h-fit justify-end"  on:click={handleClick} class:active={isClicked}>
+                        <span class="text-m">{likes}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill={isClicked ? 'black' : 'none'} viewBox="0 0 24 24" stroke-width="1.5" stroke={isClicked ? 'black' : "currentColor"} class="w-7 h-7 pl-2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                         </svg>
                     </button>

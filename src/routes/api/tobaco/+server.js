@@ -19,10 +19,10 @@ export const GET = async (event) => {
             }
         })
 
-        redis.set(event.url.href, JSON.stringify(tobacco), 'EX', 600);
+        redis.set(event.url.href, JSON.stringify(tobacco), 'EX', 60);
         return json(tobacco, {
             headers: {
-                'Cache-Control': 'max-age=600'
+                'Cache-Control': 'max-age=60'
             }
         });
 
