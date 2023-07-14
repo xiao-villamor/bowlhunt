@@ -4,7 +4,6 @@
     export let name;
     export let MixTobaccos;
 
-
     let tobaccos = [];
     async function getTobacco(id) {
         const response = await fetch(`api/tobaco?id=${id}`);

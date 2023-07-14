@@ -1,11 +1,17 @@
 import {prisma} from '../../../server/prisma.js'
 import {json} from "@sveltejs/kit";
+import {redis} from "../../../server/redis.js";
 
 export const GET = async (event) => {
 
 
         let searchParams = event.url.searchParams;
         let page = searchParams.get('page');
+
+        const cached = await redis.get(event.url.href);
+        if (cached) {
+                return json(JSON.parse(cached));
+        }
 
         const tobaccos = await prisma.mix.findMany({
                 skip: page * 5,
@@ -23,7 +29,12 @@ export const GET = async (event) => {
                         Tobacco: true,
                 }
         });
+        redis.set(event.url.href, JSON.stringify(tobaccos), 'EX', 600);
 
-        return json(tobaccos);
-
+        //return a json with a header for caching
+        return json(tobaccos, {
+                headers: {
+                        'Cache-Control': 'max-age=600'
+                }
+        });
 }
