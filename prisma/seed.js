@@ -13,7 +13,7 @@ async function main() {
             tobaccoType: 'Blonde',
             availableRegions: ['Europe', 'US'],
             rating: 4.5,
-            colour: 'blue',
+            colour: 'bg-cyan-300',
         },
     });
 
@@ -22,7 +22,7 @@ async function main() {
             name: 'Lemon squeezy',
             brand: 'Revoshi',
             flavours: ['Lemon', 'Cake'],
-            colour: 'yellow',
+            colour: 'bg-yellow-300',
             Notes: ['Sour', 'Creamy', 'Sweet'],
             tobaccoType: 'Black ',
             availableRegions: ['US', 'Germany'],
@@ -40,7 +40,7 @@ async function main() {
             tobaccoType: 'Blonde ',
             availableRegions: ['Spain'],
             rating: 5.0,
-            colour: 'red',
+            colour: 'bg-red-400',
         },
     });
 
@@ -53,7 +53,7 @@ async function main() {
             tobaccoType: 'Blonde',
             availableRegions: ['North America', 'Europe'],
             rating: 4.2,
-            colour: 'red',
+            colour: 'bg-red-300',
         },
     });
 
@@ -66,7 +66,7 @@ async function main() {
             tobaccoType: 'Dark Leaf',
             availableRegions: ['Middle East', 'Africa'],
             rating: 4.0,
-            colour: 'brown',
+            colour: 'bg-red-800',
         },
     });
 
@@ -79,7 +79,7 @@ async function main() {
             tobaccoType: 'Blonde',
             availableRegions: ['North America', 'Europe'],
             rating: 4.7,
-            colour: 'orange',
+            colour: 'bg-rose-300',
         },
     });
 
@@ -92,7 +92,7 @@ async function main() {
             tobaccoType: 'Noir',
             availableRegions: ['North America', 'Europe'],
             rating: 4.3,
-            colour: 'brown',
+            colour: 'bg-emerald-500',
         },
     });
 
@@ -105,7 +105,7 @@ async function main() {
             tobaccoType: 'Blonde',
             availableRegions: ['North America', 'Europe'],
             rating: 4.1,
-            colour: 'pink',
+            colour: 'bg-purple-500',
         },
     });
 
@@ -118,7 +118,7 @@ async function main() {
             tobaccoType: 'Blonde',
             availableRegions: ['North America', 'Europe'],
             rating: 4.4,
-            colour: 'white',
+            colour: 'bg-yellow-100',
         },
     });
 
@@ -131,7 +131,7 @@ async function main() {
             tobaccoType: 'Blonde',
             availableRegions: ['Asia', 'Australia'],
             rating: 4.6,
-            colour: 'yellow',
+            colour: 'bg-amber-400',
         },
     });
 
@@ -144,7 +144,7 @@ async function main() {
             tobaccoType: 'Blonde',
             availableRegions: ['Europe', 'US'],
             rating: 4.2,
-            colour: 'purple',
+            colour: 'bg-red-500',
         },
     });
 
@@ -157,7 +157,7 @@ async function main() {
             tobaccoType: 'Blonde',
             availableRegions: ['Europe', 'Middle East'],
             rating: 4.3,
-            colour: 'red',
+            colour: 'bg-red-600',
         },
     });
 

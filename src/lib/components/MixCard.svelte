@@ -60,7 +60,7 @@
     <div class="card  bg-base-100 drop-shadow-xl overflow-hidden">
         <div class="h-80 flex flex-col items-center rounded-xl d ">
             {#each tobaccos as t}
-                <div class="bg-{t.colour}-500 group " style={`height: ${t.percentage}%; width: 100%;`} >
+                <div class="{t.colour} group " style={`height: ${t.percentage}%; width: 100%;`} >
                     <div class="flex justify-start items-end h-full w-full">
                         <div class="bg-opacity-50 bg-gray-500 rounded-tr-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                             <span class="text-white">{t.name} - {t.percentage}%</span>
