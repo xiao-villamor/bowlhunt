@@ -97,7 +97,7 @@
     }
 
     .animate-fade-in {
-        animation: fade-in 0.5s ease-in-out;
+        animation: fade-in 0.8s ease-in-out;
     }
     .card-body {
         display: flex;

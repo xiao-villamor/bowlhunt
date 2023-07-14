@@ -3,7 +3,7 @@
     import NavBar from "$lib/components/NavBar.svelte";
 </script>
 
-<html data-theme="garden" lang="es" class="md:mx-5">
+<html data-theme="garden" lang="es" class="md:mx-5 mx-3">
 
 
     <NavBar navbar_id="my-drawer-2"/>
