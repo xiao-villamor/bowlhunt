@@ -1,16 +1,44 @@
 <script>
     import MixCard from "$lib/components/MixCard.svelte";
     import {onMount} from "svelte";
+    import {flavours} from "$lib/store.js";
+    import {notes} from "$lib/store.js";
 
     let pageNumber = -1;
     let loading = false;
     let mixes = [];
+
     let loadmore = true;
 
+    // stores for the filters
+    let notesLocal = [];
+    let flavoursLocal = [];
+
+    flavours.subscribe(value => {
+        flavoursLocal = value;
+    })
+
+    notes.subscribe(value => {
+        notesLocal = value;
+    })
+
+
+
     async function getMixes(page) {
-        const response = await fetch(`api/mix?page=${page}`);
+        //convert the notes and flavours to a string that each flavour is separated by a -
+        let urlNotes = "";
+        let urlFlavours = "";
+        if (notesLocal !== null) {
+            urlNotes = notesLocal.join("-");
+        }
+        if (flavoursLocal !== null) {
+            urlFlavours = flavoursLocal.join("-");
+        }
+        const url = `api/newmixes?page=${page}&Notes=${urlNotes}&Flavours=${urlFlavours}`
+        const response = await fetch(url);
         return await response.json();
     }
+
 
     async function loadMoreMixes() {
         loading = true;
@@ -19,9 +47,8 @@
             const newMixes = await getMixes(pageNumber);
             mixes = mixes.concat(newMixes);
             loading = false;
-
             // Perform the following part in the background
-            checkLoadMore();
+            await checkLoadMore();
         } catch (error) {
             // Handle any errors that occur during the API call
             console.error(error);
@@ -85,7 +112,7 @@
     <div class="grid items-center  justify-center grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lx:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 min-w-0 gap-10">
         {#each mixes as mix}
             <div class="flex justify-center">
-                <MixCard name={mix.name} class=""  />
+                <MixCard name={mix.name} MixTobaccos="{mix.Tobacco}" likes="{mix.likes}"  class=""  />
             </div>
         {/each}
     </div>

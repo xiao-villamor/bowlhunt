@@ -10,3 +10,6 @@ export const liked = writable(
 liked.subscribe(value => {
     browser && localStorage.setItem("liked", JSON.stringify(value));
 });
+
+export const flavours = writable([]);
+export const notes = writable([]);

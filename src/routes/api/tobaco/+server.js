@@ -5,6 +5,8 @@ import {redis} from "../../../server/redis.js";
 
 
 export const GET = async (event) => {
+    try {
+
 
         const cached = await redis.get(event.url.href);
         if (cached) {
@@ -25,5 +27,8 @@ export const GET = async (event) => {
                 'Cache-Control': 'max-age=60'
             }
         });
+    }catch (e) {
+        return json({error: e.message}, {status: 500});
+    }
 
 }

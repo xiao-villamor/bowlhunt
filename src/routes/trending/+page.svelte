@@ -3,12 +3,15 @@
     import {onMount} from "svelte";
 
     let pageNumber = -1;
+    let notes = "";
+    let flavours = "";
     let loading = false;
     let mixes = [];
     let loadmore = true;
 
+
     async function getMixes(page) {
-        const response = await fetch(`api/mix?page=${page}`);
+        const response = await fetch(`api/trendingmixes?page=${page}&Notes=${notes}&Flavours=${flavours}`);
         return await response.json();
     }
 
@@ -85,7 +88,7 @@
     <div class="grid items-center justify-center grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lx:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 min-w-0 gap-10">
         {#each mixes as mix}
             <div class="flex justify-center">
-                <MixCard name={mix.name} class=""  />
+                <MixCard name={mix.name} MixTobaccos="{mix.Tobacco}" likes="{mix.likes}" class=""  />
             </div>
         {/each}
     </div>

@@ -3,7 +3,7 @@ import {PrismaClient} from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-    // Create mix
+    // Create newmixes
     const tobacco1 = await prisma.tobacco.create({
         data: {
             name: 'Blue Mist',

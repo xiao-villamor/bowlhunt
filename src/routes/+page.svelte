@@ -5,10 +5,27 @@
     let pageNumber = -1;
     let loading = false;
     let mixes = [];
+    let notes = null;
+    let flavours = null ;
     let loadmore = true;
 
+    export function updateMixes() {
+        mixes = [];
+        pageNumber = -1;
+        loadmore = true;
+        loadMoreMixes();
+    }
     async function getMixes(page) {
-        const response = await fetch(`api/mix?page=${page}`);
+        //convert the notes and flavours to a string that each flavour is separated by a -
+        let urlNotes = "";
+        let urlFlavours = "";
+        if (notes !== null) {
+            urlNotes = notes.join("-");
+        }
+        if (flavours !== null) {
+            urlFlavours = flavours.join("-");
+        }
+        const response = await fetch(`api/newmixes?page=${page}&Notes=${urlNotes}&Flavours=${urlFlavours}`);
         return await response.json();
     }
 
@@ -82,12 +99,11 @@
             <span class="loading loading-ring loading-lg"></span>
         </div>
     {/if}
-        <div class="grid items-center justify-center grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lx:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
-            {#each mixes as mix}
-                <div class="flex justify-center m-4">
-                    <MixCard name={mix.name} MixTobaccos="{mix.Tobacco}" likes="{mix.likes}" class=""  />
-                </div>
-            {/each}
-        </div>
+    <div class="grid items-center  justify-center grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lx:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 min-w-0 gap-10">
+        {#each mixes as mix}
+            <div class="flex justify-center">
+                <MixCard name={mix.name} MixTobaccos="{mix.Tobacco}" likes="{mix.likes}"  class=""  />
+            </div>
+        {/each}
+    </div>
 </div>
-

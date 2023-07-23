@@ -12,13 +12,16 @@
 
 
     let tobaccos = [];
+
+
+
     async function getTobacco(id) {
         const response = await fetch(`api/tobaco?id=${id}`);
         return await response.json();
     }
 
     async function likeMix(id,likes) {
-        //do a post request to the api to like the mix the data shloud go in the body
+        //do a post request to the api to like the newmixes the data shloud go in the body
         const response = await fetch(`api/likes`, {
             method: 'POST',
             headers: {
@@ -34,6 +37,7 @@
     }
 
     async function getMixTobaccos(mix) {
+
         let tobaccos = [];
 
         for (let i = 0; i < mix.length; i++) {
@@ -65,7 +69,7 @@
 
 
 
-        //set in store the id of the mix that was liked and if it was liked or not
+        //set in store the id of the newmixes that was liked and if it was liked or not
         liked.update(n => {
             const index = n.findIndex(x => x.id === MixTobaccos[0].mixId);
 
