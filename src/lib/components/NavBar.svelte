@@ -18,9 +18,7 @@
             </a>
         </div>
         <div class="flex gap-1 ">
-            <div class="form-control  xs:max-lg:invisible ">
-                <input type="text" placeholder="Search" class="input input-bordered md:w-auto w-24 " />
-            </div>
+
 
             <div>
                 <button class="btn btn-square btn-ghost">

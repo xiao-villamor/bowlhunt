@@ -1,20 +1,19 @@
 import {prisma} from '../../../server/prisma.js'
 import {json} from "@sveltejs/kit";
-import {redis} from "../../../server/redis.js";
 
 export const GET = async (event) => {
 
     let searchParams = event.url.searchParams;
     let page = searchParams.get('page');
 
-    const cached = await redis.get(event.url.href);
-
-    if (cached) {
-        return json(JSON.parse(cached));
-    }
 
     let Notes = searchParams.get('Notes');
     let Flavours = searchParams.get('Flavours');
+
+    let date = new Date();
+    date.setMonth(date.getMonth() - 1);
+
+
 
     let tobaccos = [];
 
@@ -33,7 +32,11 @@ export const GET = async (event) => {
             orderBy: {
                 likes: 'desc'
             },
+
             where: {
+                createdAt: {
+                    gt: date
+                },
                 Tobacco: {
                     some: {
                         tobacco: {
@@ -64,8 +67,6 @@ export const GET = async (event) => {
             }
         });
 
-
-
     }else {
 
 
@@ -76,7 +77,11 @@ export const GET = async (event) => {
                 likes: 'desc'
             },
 
-
+            where: {
+                createdAt: {
+                    gt: date
+                }
+                },
 
 
             select: {
@@ -89,12 +94,8 @@ export const GET = async (event) => {
             }
         });
     }
-    redis.set(event.url.href, JSON.stringify(tobaccos), 'EX', 60);
 
     //return a json with a header for caching
     return json(tobaccos, {
-        headers: {
-            'Cache-Control': 'max-age=60'
-        }
     });
 }

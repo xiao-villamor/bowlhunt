@@ -13,10 +13,15 @@
 
     let tobaccos = [];
 
+    const getApiUrl = () => {
+        const baseUrl = window.location.origin;
+        return `${baseUrl}`;
+    };
+
 
 
     async function getTobacco(id) {
-        const response = await fetch(`api/tobaco?id=${id}`);
+        const response = await fetch(`${getApiUrl()}/api/tobaco?id=${id}`);
         return await response.json();
     }
 
@@ -58,7 +63,6 @@
                 likes = n[index].likes;
             }
         });
-
     });
 
 

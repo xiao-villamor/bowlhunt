@@ -12,4 +12,6 @@ liked.subscribe(value => {
 });
 
 export const flavours = writable([]);
+
 export const notes = writable([]);
+

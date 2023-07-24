@@ -1,32 +1,61 @@
 <script>
     import MixCard from "$lib/components/MixCard.svelte";
     import {onMount} from "svelte";
+    import {flavours} from "$lib/store.js";
+    import {notes} from "$lib/store.js";
 
     let pageNumber = -1;
-    let notes = "";
-    let flavours = "";
     let loading = false;
     let mixes = [];
-    let loadmore = true;
+
+    let more = true;
 
 
-    async function getMixes(page) {
-        const response = await fetch(`api/trendingmixes?page=${page}&Notes=${notes}&Flavours=${flavours}`);
+
+
+    $: $notes, updateMixesNew();
+    $: $flavours, updateMixesNew();
+
+    export async function updateMixesNew() {
+        mixes = [];
+        pageNumber = -1;
+        more = true;
+        await loadMoreMixes();
+    }
+
+    export async function getMixes(pageNum) {
+
+        //convert the notes and flavours to a string that each flavour is separated by a -
+        let urlNotes = "";
+        let urlFlavours = "";
+
+        if (notes !== null) {
+            urlNotes = $notes.join("-")
+        }
+        if (flavours !== null) {
+            urlFlavours = $flavours.join("-");
+        }
+
+        const url = `api/trendingmixes?page=${pageNum}&Notes=${urlNotes}&Flavours=${urlFlavours}`;
+
+        const response = await fetch(url);
         return await response.json();
     }
 
+
     async function loadMoreMixes() {
+
         loading = true;
         pageNumber++;
+
         try {
-            const newMixes = await getMixes(pageNumber);
+
+            const newMixes = await getMixes(pageNumber, notes, flavours);
             mixes = mixes.concat(newMixes);
             loading = false;
+            await checkLoadMore();
 
-            // Perform the following part in the background
-            checkLoadMore();
         } catch (error) {
-            // Handle any errors that occur during the API call
             console.error(error);
             loading = false;
         }
@@ -35,20 +64,20 @@
 
     async function checkLoadMore() {
         try {
-            const isLast = await getMixes(pageNumber + 1);
-            loadmore = isLast.length !== 0;
+            const isLast = await getMixes(pageNumber+1, notes, flavours);
+            more = isLast.length !== 0;
         } catch (error) {
-            // Handle any errors that occur during the API call
             console.error(error);
         }
     }
 
 
-
     onMount(async () => {
+
         if (typeof window !== "undefined") {
             window.addEventListener("scroll", handleScroll);
         }
+
         await loadMoreMixes();
     });
 
@@ -57,11 +86,12 @@
             window.innerHeight + window.pageYOffset >=
             document.documentElement.offsetHeight &&
             window.pageYOffset > 0 && // Add this condition to check if scroll position is not at the top
-            !loading && loadmore
+            !loading && more
         ) {
             loadMoreMixes();
         }
     }
+
 
 </script>
 
@@ -88,7 +118,7 @@
     <div class="grid items-center justify-center grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lx:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 min-w-0 gap-10">
         {#each mixes as mix}
             <div class="flex justify-center">
-                <MixCard name={mix.name} MixTobaccos="{mix.Tobacco}" likes="{mix.likes}" class=""  />
+                <MixCard name={mix.name} MixTobaccos="{mix.Tobacco}" likes="{mix.likes}"/>
             </div>
         {/each}
     </div>

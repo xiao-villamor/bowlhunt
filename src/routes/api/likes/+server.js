@@ -10,7 +10,7 @@ export const POST = async (event) => {
     const { likes, id } = parsedBody;
     console.log(likes, id)
 
-    //update the tobacco with the new number of likes
+    //update the tobacco with the month number of likes
     const tobacco = await prisma.mix.update({
         where: {
             id: id
