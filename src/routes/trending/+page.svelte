@@ -57,9 +57,7 @@
             await checkLoadMore();
 
         } catch (error) {
-            console.log("error")
             error_g = true;
-            console.error(error);
         }
     }
 
@@ -69,9 +67,7 @@
             const isLast = await getMixes(pageNumber+1, notes, flavours);
             more = isLast.length !== 0;
         } catch (error) {
-            console.log("error")
             error_g = true;
-            console.error(error);
         }
     }
 
