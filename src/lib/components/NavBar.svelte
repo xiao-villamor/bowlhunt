@@ -21,7 +21,7 @@
 
 
             <div>
-                <button class="btn btn-square btn-ghost">
+                <a class="btn btn-square btn-ghost" href="/create">
                     <!-- add an add svg -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
@@ -30,7 +30,7 @@
                         <line x1="12" y1="5" x2="12" y2="19" />
                         <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>
-                </button>
+                </a>
             </div>
         </div>
 

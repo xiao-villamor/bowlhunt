@@ -70,7 +70,7 @@
             <label for="my-drawer-2" class="drawer-overlay"></label>
             <ul class="menu lg:menu px-4 w-64 text-base-content bg-base-100  max-w-md">
 
-                <li class="mt-8">
+                <li class="mt-5">
                     <a id="new" class="text-lg h-full flex items-center" href="/new" data-sveltekit-preload-data="hover">
                             <svg class="w-9 h-9 stroke-current mr-2" width="24" height="24" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke-width="3" stroke="#000000" fill="none"><path d="M30,52.16c.81-2.07,7.06-17,19.76-19.86a.09.09,0,0,0,0-.18c-2.14-.86-15.22-6.57-19.38-20.26a.09.09,0,0,0-.18,0c-.51,2.27-3.94,14.43-20,20a.1.1,0,0,0,0,.19c2.24.38,13.48,3.14,19.62,20.15A.1.1,0,0,0,30,52.16Z"/><path d="M48.79,25.08c.29-.74,2.52-6.07,7.06-7.09a0,0,0,0,0,0-.07c-.76-.3-5.43-2.34-6.92-7.23a0,0,0,0,0-.07,0c-.18.82-1.4,5.16-7.14,7.13a0,0,0,0,0,0,.07c.8.14,4.81,1.12,7,7.2A0,0,0,0,0,48.79,25.08Z"/></svg>
                             New
@@ -101,7 +101,6 @@
                         <span class="label-text">{note}</span>
                         <input type="checkbox"
                                class="checkbox"
-                               checked=""
                                on:change={handleCheckboxChangeNotes}
                         />
                     </label>
@@ -117,7 +116,7 @@
                             <span class="label-text">{flavour}</span>
                             <input type="checkbox"
                                    class="checkbox"
-                                   checked=""
+
                                    on:change={handleCheckboxChangeFlavours}
                             />
                         </label>

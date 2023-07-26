@@ -20,18 +20,14 @@ model mixToTobacco {
 }
 
 model tobacco {
-  id               Int            @id @default(autoincrement())
-  name             String
-  brand            String
-  flavours         String[]
-  Notes            String[]
-  tobaccoType      String
-  availableRegions String[]
-  colour           String
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
-  rating           Float          @default(0)
-  mixes            mixToTobacco[]
+  id        Int            @id @default(autoincrement())
+  name      String
+  brand     String
+  flavours  String[]
+  Notes     String[]
+  colour    String
+  createdAt DateTime       @default(now())
+  mixes     mixToTobacco[]
 }
 
 model mix {

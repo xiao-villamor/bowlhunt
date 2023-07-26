@@ -1,6 +1,5 @@
 import {prisma} from '../../../server/prisma.js'
 import {json} from "@sveltejs/kit";
-import {redis} from "../../../server/redis.js";
 
 export const GET = async (event) => {
 
@@ -37,13 +36,15 @@ export const GET = async (event) => {
                                                         OR: [
                                                                 {
                                                                         Notes: {
-                                                                                hasSome: notes
+                                                                                hasSome: notes,
+                                                                                mode: 'insensitive',
 
                                                                         },
                                                                 },
                                                                 {
                                                                         flavours: {
-                                                                                hasSome: flavours
+                                                                                hasSome: flavours,
+                                                                                mode: 'insensitive',
                                                                         },
                                                                 }
                                                         ]

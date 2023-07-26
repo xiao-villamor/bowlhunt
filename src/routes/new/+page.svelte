@@ -13,8 +13,12 @@
 
 
     // update the mixes when the filters change
-    $: $notes, updateMixesNew();
-    $: $flavours, updateMixesNew();
+
+    $: if ($notes !== null || $flavours !== null) {
+        updateMixesNew();
+    }
+
+
 
     export async function updateMixesNew() {
         mixes = [];
@@ -22,8 +26,6 @@
         more = true;
         await loadMoreMixes();
     }
-
-
 
 
     async function getMixes(PageNum) {
@@ -46,16 +48,18 @@
     async function loadMoreMixes() {
         loading = true;
         pageNumber++;
-        try {
-            const newMixes = await getMixes(pageNumber);
-            mixes = mixes.concat(newMixes);
-            loading = false;
-            // Perform the following part in the background
-            await checkLoadMore();
-        } catch (error) {
-            // Handle any errors that occur during the API call
-            console.error(error);
-            loading = false;
+        if(more){
+            try {
+                const newMixes = await getMixes(pageNumber);
+                mixes = mixes.concat(newMixes);
+                loading = false;
+                // Perform the following part in the background
+                await checkLoadMore();
+            } catch (error) {
+                // Handle any errors that occur during the API call
+                console.error(error);
+                loading = false;
+            }
         }
     }
 

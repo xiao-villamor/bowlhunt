@@ -15,17 +15,17 @@ export const GET = async (event) => {
 
         let searchParams = event.url.searchParams;
 
+
         const tobacco = await prisma.tobacco.findUnique({
             where: {
                 id: parseInt(searchParams.get('id'))
             }
         })
 
+        console.log(tobacco)
+
         redis.set(event.url.href, JSON.stringify(tobacco), 'EX', 60);
         return json(tobacco, {
-            headers: {
-                'Cache-Control': 'max-age=60'
-            }
         });
     }catch (e) {
         return json({error: e.message}, {status: 500});

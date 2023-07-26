@@ -13,8 +13,11 @@
 
 
 
-    $: $notes, updateMixesNew();
-    $: $flavours, updateMixesNew();
+    //check if the notes or flavours have changed and if so update the mixes
+    $: if ($notes !== [] || $flavours !== []) {
+        updateMixesNew();
+    }
+
 
     export async function updateMixesNew() {
         mixes = [];

@@ -24,7 +24,6 @@ export const GET = async (event) => {
         if(Notes !== null)  notes = Notes.split('-');
         if(Flavours !== null) flavours = Flavours.split('-');
 
-        console.log(notes, flavours)
 
         tobaccos = await prisma.mix.findMany({
             skip: page * 16,
@@ -43,13 +42,15 @@ export const GET = async (event) => {
                             OR: [
                                 {
                                     Notes: {
-                                        hasSome: notes
+                                        hasSome: notes,
+                                        mode: 'insensitive',
 
                                     },
                                 },
                                 {
                                     flavours: {
-                                        hasSome: flavours
+                                        hasSome: flavours,
+                                        mode: 'insensitive',
                                     },
                                 }
                             ]

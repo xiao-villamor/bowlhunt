@@ -8,7 +8,9 @@ export const FlavoursListLocal = [
     "Blueberry",
     "Blackberry",
     "Candy",
+    "Dough",
     "Cola",
+    "Cranberry",
     "Ice Cream",
     "Energy Drink",
     "Strawberry",
@@ -28,10 +30,12 @@ export const FlavoursListLocal = [
     "Coconut",
     "Lemon",
     "Lime",
+    "Tangerine",
     "Mango",
     "Melon",
     "Menthol",
     "Mint",
+    "Milk",
     "Orange",
     "Peach",
     "Passion Fruit",
@@ -43,6 +47,12 @@ export const FlavoursListLocal = [
     "Tea",
     "Pie",
     "Watermelon",
-    "Cinnamon"
+    "Cinnamon",
+    "Banana",
+    "Cream",
+    "Lychee",
+    "Cookie",
+    "Gum",
+
 
   ]

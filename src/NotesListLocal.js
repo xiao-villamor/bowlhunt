@@ -3,7 +3,7 @@ export const NotesListLocal = [
     "Fruity",
     "Sweet",
     "Berry",
-    "Icy",
+    "Fresh",
     "Spicy",
     "Floral",
     "Creamy"
