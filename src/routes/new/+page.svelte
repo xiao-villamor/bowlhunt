@@ -111,11 +111,6 @@
 </style>
 
 <div >
-    {#if loading === true}
-        <div class="fixed inset-0 flex items-center justify-center z-30">
-            <span class="loading loading-ring loading-lg"></span>
-        </div>
-    {/if}
     <div class="grid items-center  justify-center grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lx:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 min-w-0 gap-10">
         {#each mixes as mix}
             <div class="flex justify-center">
