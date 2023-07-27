@@ -15,7 +15,7 @@ export const GET = async (event) => {
 
 
 
-    let tobaccos = [];
+    let tobaccos ;
 
     if (Notes || Flavours) {
         //split the string into an array using the - as a delimiter

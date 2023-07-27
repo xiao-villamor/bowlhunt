@@ -26,7 +26,7 @@
     }
 
     async function likeMix(id,likes) {
-        //do a post request to the api to like the newmixes the data shloud go in the body
+        //do a post request to the backend to like the newmixes the data shloud go in the body
         const response = await fetch(`api/likes`, {
             method: 'POST',
             headers: {
