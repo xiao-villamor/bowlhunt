@@ -21,13 +21,13 @@
 
 
     async function getTobacco(id) {
-        const response = await fetch(`${getApiUrl()}/api/tobaco?id=${id}`);
+        const response = await fetch(`${getApiUrl()}/backend/tobaco?id=${id}`);
         return await response.json();
     }
 
     async function likeMix(id,likes) {
         //do a post request to the backend to like the newmixes the data shloud go in the body
-        const response = await fetch(`api/likes`, {
+        const response = await fetch(`backend/likes`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

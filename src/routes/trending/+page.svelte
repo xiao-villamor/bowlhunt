@@ -39,7 +39,7 @@
             urlFlavours = $flavours.join("-");
         }
 
-        const url = `api/trendingmixes?page=${pageNum}&Notes=${urlNotes}&Flavours=${urlFlavours}`;
+        const url = `backend/trendingmixes?page=${pageNum}&Notes=${urlNotes}&Flavours=${urlFlavours}`;
 
         const response = await fetch(url);
         return await response.json();

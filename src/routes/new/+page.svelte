@@ -38,7 +38,7 @@
         if (flavours !== null) {
             urlFlavours = $flavours.join("-");
         }
-        const url = `api/newmixes?page=${PageNum}&Notes=${urlNotes}&Flavours=${urlFlavours}`
+        const url = `backend/newmixes?page=${PageNum}&Notes=${urlNotes}&Flavours=${urlFlavours}`
         const response = await fetch(url);
 
         return await response.json();
