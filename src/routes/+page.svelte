@@ -73,7 +73,6 @@
         if (typeof window !== "undefined") {
             window.addEventListener("scroll", handleScroll);
         }
-        await loadMoreMixes();
     });
 
     function handleScroll() {

@@ -62,19 +62,15 @@
 
     <NavBar navbar_id="my-drawer-2"/>
 
-    <div class="flex h-fit">
-        <!-- Drawer -->
-        <div class="drawer lg:drawer-open lg:sticky overflow-y-hidden"
-             onmouseenter="enableDrawerScroll()"
-             onmouseleave="disableDrawerScroll()">
-            <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-            <div class="drawer-content m-6 h-screen" >
-                <!-- Your content goes here -->
-                <slot />
-            </div>
-            <div class="drawer-side z-50 fixed top-0 h-auto overflow-y-hidden">
-                <label for="my-drawer-2" class="drawer-overlay"></label>
-                <ul class="menu lg:menu px-4 w-64 text-base-content bg-base-100  max-w-md">
+
+    <div class="drawer lg:drawer-open my-8 lg:sticky  left-0 " >
+        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content m-6">
+            <slot />
+        </div>
+        <div class="drawer-side z-50 ">
+            <label for="my-drawer-2" class="drawer-overlay"></label>
+            <ul class="menu-vertical lg:menu  px-4 w-60 h-auto text-base-content bg-base-100  overflow-x-hidden">
 
                 <li class="">
                     <a id="new" class="text-lg h-full flex items-center" href="/new" data-sveltekit-preload-data="hover">
@@ -129,5 +125,4 @@
             </ul>
         </div>
         </div>
-    </div>
 </html>

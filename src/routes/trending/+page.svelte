@@ -7,7 +7,7 @@
     let pageNumber = -1;
     let error_g = false;
     let mixes = [];
-
+    let loading = false;
     let more = true;
 
 
@@ -47,11 +47,11 @@
 
 
     async function loadMoreMixes() {
+        console.log("loading mixes")
 
         pageNumber++;
 
         try {
-
             const newMixes = await getMixes(pageNumber, notes, flavours);
             mixes = mixes.concat(newMixes);
             await checkLoadMore();
@@ -59,37 +59,36 @@
         } catch (error) {
             error_g = true;
             more = false;
+
         }
     }
-
 
     async function checkLoadMore() {
         try {
             const isLast = await getMixes(pageNumber+1, notes, flavours);
             more = isLast.length !== 0;
+            console.log("more mixes " + more)
         } catch (error) {
             error_g = true;
             more = false;
+            loading = false;
         }
     }
 
 
     onMount(async () => {
-
         if (typeof window !== "undefined") {
             window.addEventListener("scroll", handleScroll);
         }
-
-        await loadMoreMixes();
     });
 
     function handleScroll() {
         if (
-            window.innerHeight + window.pageYOffset >=
-            document.documentElement.offsetHeight &&
+            window.innerHeight + window.pageYOffset >= document.documentElement.offsetHeight &&
             window.pageYOffset > 0 && // Add this condition to check if scroll position is not at the top
             more
         ) {
+            console.log("bottom")
             loadMoreMixes();
         }
     }
