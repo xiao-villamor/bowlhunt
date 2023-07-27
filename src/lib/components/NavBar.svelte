@@ -12,7 +12,7 @@
             </label>
         </div>
         <div class="flex-1">
-            <img src="/logo_tiny.webp" alt="Logo" width="74" height="74" />
+            <img src="/logo_tiny.webp" alt="Logo" width="54" height="54" />
             <a href="/" class=" normal-case text-xl w-fit">
                 ShishaMix
             </a>
