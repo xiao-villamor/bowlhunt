@@ -55,28 +55,34 @@
     }
 
 
+
 </script>
 
-<html data-theme="garden" lang="es" class="md:mx-5 mx-3">
+<html data-theme="garden" lang="es" class="md:mx-5 mx-3 static">
 
     <NavBar navbar_id="my-drawer-2"/>
 
-    <div class="drawer lg:drawer-open my-8 lg:sticky  " >
-        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content m-6">
-            <slot />
-        </div>
-        <div class="drawer-side z-50 ">
-            <label for="my-drawer-2" class="drawer-overlay"></label>
-            <ul class="menu lg:menu px-4 w-64 text-base-content bg-base-100  max-w-md">
+    <div class="flex h-fit">
+        <!-- Drawer -->
+        <div class="drawer lg:drawer-open lg:sticky overflow-y-hidden"
+             onmouseenter="enableDrawerScroll()"
+             onmouseleave="disableDrawerScroll()">
+            <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+            <div class="drawer-content m-6 h-screen" >
+                <!-- Your content goes here -->
+                <slot />
+            </div>
+            <div class="drawer-side z-50 fixed top-0 h-auto overflow-y-hidden">
+                <label for="my-drawer-2" class="drawer-overlay"></label>
+                <ul class="menu lg:menu px-4 w-64 text-base-content bg-base-100  max-w-md">
 
-                <li class="mt-5">
+                <li class="">
                     <a id="new" class="text-lg h-full flex items-center" href="/new" data-sveltekit-preload-data="hover">
                             <svg class="w-9 h-9 stroke-current mr-2" width="24" height="24" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke-width="3" stroke="#000000" fill="none"><path d="M30,52.16c.81-2.07,7.06-17,19.76-19.86a.09.09,0,0,0,0-.18c-2.14-.86-15.22-6.57-19.38-20.26a.09.09,0,0,0-.18,0c-.51,2.27-3.94,14.43-20,20a.1.1,0,0,0,0,.19c2.24.38,13.48,3.14,19.62,20.15A.1.1,0,0,0,30,52.16Z"/><path d="M48.79,25.08c.29-.74,2.52-6.07,7.06-7.09a0,0,0,0,0,0-.07c-.76-.3-5.43-2.34-6.92-7.23a0,0,0,0,0-.07,0c-.18.82-1.4,5.16-7.14,7.13a0,0,0,0,0,0,.07c.8.14,4.81,1.12,7,7.2A0,0,0,0,0,48.79,25.08Z"/></svg>
                             New
                     </a>
                 </li>
-                <li class="mt-4">
+                <li class="pt-4">
                     <a id="trend" class="flex items-center text-lg"  href="/trending">
                         <svg class="w-8 h-8 stroke-current mr-2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -89,8 +95,6 @@
                     </a>
 
                 </li>
-
-
 
                 <div class="divider"></div>
                 <span class="text-lg">Notes</span>
@@ -123,6 +127,7 @@
                     </li>
                 {/each}
             </ul>
+        </div>
         </div>
     </div>
 </html>

@@ -56,6 +56,7 @@
             } catch (error) {
                 // Handle any errors that occur during the API call
                 error_g = true;
+                more = false;
             }
         }
     }
@@ -67,6 +68,7 @@
             more = isLast.length !== 0;
         } catch (error) {
             error_g = true;
+            more = false;
         }
     }
 
