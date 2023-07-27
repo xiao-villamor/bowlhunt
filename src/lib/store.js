@@ -3,6 +3,10 @@
 import {writable} from "svelte/store";
 import { browser } from "$app/environment";
 
+import {defaulT} from "../defaulT.js";
+
+
+
 export const liked = writable(
     browser && JSON.parse(localStorage.getItem("liked")) || []
 );
@@ -14,4 +18,14 @@ liked.subscribe(value => {
 export const flavours = writable([]);
 
 export const notes = writable([]);
+
+export const tobaccosCreate = writable([]);
+
+//set a default value for tobaccosCreate from a copy of defaulT.js
+tobaccosCreate.set(defaulT);
+
+
+export const tobaccoNum = writable(0);
+
+export const tobaccoSelected = writable(0);
 

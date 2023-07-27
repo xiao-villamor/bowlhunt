@@ -1,5 +1,4 @@
 export const brands = [
-    "brand",
     "Al Waha",
     "Streetsmoke",
     "Dumanji",

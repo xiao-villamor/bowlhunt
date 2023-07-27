@@ -1,7 +1,15 @@
 <script>
 
-    export let name;
-    export let Tobaccos;
+    import {tobaccosCreate} from "$lib/store.js";
+    import {tobaccoSelected} from "$lib/store.js";
+
+    let name;
+
+    //create a funtion to on click change the colour of the div
+    function clickTobacco(event){
+       console.log(event.currentTarget.id);
+       tobaccoSelected.set(event.currentTarget.id);
+    }
 
 </script>
 
@@ -32,24 +40,25 @@
 
 </style>
 
-<div class="flex w-96 shrink-0 mix animate-fade-in"  >
+<div class="flex w-72 shrink-0 mix animate-fade-in"  >
     <div class="card  bg-base-100 drop-shadow-xl overflow-hidden">
-        <div class="h-80 flex flex-col items-center rounded-xl d ">
-            {#each Tobaccos as t}
-                <div class="{t.colour} group " style={`height: ${t.percentage}%; width: 100%;`} >
-                    <div class="flex justify-start items-end h-full w-full">
-                        <div class="bg-opacity-50 bg-gray-500 rounded-tr-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            <span class="text-white">{t.name} - {t.percentage}%</span>
+        <div class="h-80 flex flex-col items-center rounded-xl">
+            {#each $tobaccosCreate as t}
+                {#if t.hidden !== true}
+                    <div class="{t.colour} group" on:click={clickTobacco} style={`height: ${t.percentage}%; width: 100%;`}  id={t.id}>
+                        <div class="flex justify-start items-end h-full w-full">
+                            <div class="bg-opacity-50 bg-gray-500 rounded-tr-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                <span class="text-white">{t.name} - {t.percentage}%</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {/if}
             {/each}
 
             <div class="card-body w-full">
                 <div class="grid grid-cols-2 gap-2">
-                    <h2 class="card-title w-32">{name}</h2>
+                    <input type="text" placeholder="Mix Name" class="input input-ghost w-full max-w-md" />
                 </div>
-
             </div>
         </div>
     </div>

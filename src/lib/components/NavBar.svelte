@@ -4,7 +4,7 @@
 </script>
 
 
-<div class="sticky top-0 z-30 my-2">
+<div class="sticky top-0 z-30 ">
     <div class="navbar bg-base-100  border-b-2 dark:border-gray-300">
         <div class="flex-none lg:hidden">
             <label for="{navbar_id}" class="btn btn-square btn-ghost">
