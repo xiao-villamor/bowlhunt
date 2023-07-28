@@ -64,10 +64,8 @@
 
     <div class="drawer lg:drawer-open my-8 lg:sticky  xs:max-md:items-center xs:max-md:justify-center" >
         <label for="my-drawer-2">
-            Toggle Drawer
+            <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         </label>
-        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-
         <div class="drawer-content m-6">
             <slot />
         </div>
@@ -94,9 +92,12 @@
                         </a>
 
                     </li>
-
-                    <div class="divider"></div>
-                    <span class="text-lg">Notes</span>
+                    <li>
+                        <div class="divider"></div>
+                    </li>
+                    <li>
+                        <span class="text-lg">Notes</span>
+                    </li>
 
                     {#each NotesListLocal as note}
                     <li>
@@ -109,9 +110,12 @@
                         </label>
                     </li>
                     {/each}
-
-                    <div class="divider"></div>
-                    <span class="text-lg">Flavours</span>
+                    <li>
+                        <div class="divider"></div>
+                    </li>
+                    <li>
+                        <span class="text-lg">Flavours</span>
+                    </li>
 
                     {#each FlavoursListLocal as flavour}
                         <li>
