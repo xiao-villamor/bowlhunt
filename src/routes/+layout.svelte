@@ -63,7 +63,11 @@
     <NavBar navbar_id="my-drawer-2"/>
 
     <div class="drawer lg:drawer-open my-8 lg:sticky  xs:max-md:items-center xs:max-md:justify-center" >
+        <label for="my-drawer-2">
+            Toggle Drawer
+        </label>
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+
         <div class="drawer-content m-6">
             <slot />
         </div>

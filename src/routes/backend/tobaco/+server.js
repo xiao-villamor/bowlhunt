@@ -22,7 +22,6 @@ export const GET = async (event) => {
             }
         })
 
-        console.log(tobacco)
 
         redis.set(event.url.href, JSON.stringify(tobacco), 'EX', 60);
         return json(tobacco, {

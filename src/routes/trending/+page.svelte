@@ -46,8 +46,6 @@
 
 
     async function loadMoreMixes() {
-        console.log("loading mixes")
-
         pageNumber++;
 
         try {
@@ -66,7 +64,6 @@
         try {
             const isLast = await getMixes(pageNumber+1, notes, flavours);
             more = isLast.length !== 0;
-            console.log("more mixes " + more)
         } catch (error) {
             error_g = true;
             more = false;
@@ -86,7 +83,6 @@
             window.pageYOffset > 0 && // Add this condition to check if scroll position is not at the top
             more
         ) {
-            console.log("bottom")
             loadMoreMixes();
         }
     }

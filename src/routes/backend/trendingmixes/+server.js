@@ -4,8 +4,6 @@ import {json} from "@sveltejs/kit";
 export const GET = async (event) => {
 
     let searchParams = event.url.searchParams;
-    console.log("Trending")
-
     let page = searchParams.get('page');
 
 
@@ -18,10 +16,6 @@ export const GET = async (event) => {
 
 
     let tobaccos ;
-
-    console.log("Trending")
-    console.log(Notes)
-    console.log(Flavours)
 
     if (Notes || Flavours) {
         //split the string into an array using the - as a delimiter

@@ -14,14 +14,14 @@
         <div class="flex-1">
             <img src="/logo_tiny.webp" alt="Logo" width="54" height="54" />
             <a href="/" class=" normal-case text-xl w-fit">
-                ShishaMix
+                Bowlhunt
             </a>
         </div>
         <div class="flex gap-1 ">
 
 
             <div>
-                <a class="btn btn-square btn-ghost"  href="/create">
+                <a class="btn btn-square btn-ghost"  href="/create" aria-label="Create New Item">
                     <!-- add an add svg -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
