@@ -34,7 +34,6 @@ model mix {
   id        Int            @id @default(autoincrement())
   name      String
   createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
   Tobacco   mixToTobacco[]
   likes     Int            @default(0)
 }

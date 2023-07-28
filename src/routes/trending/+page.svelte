@@ -7,7 +7,6 @@
     let pageNumber = -1;
     let error_g = false;
     let mixes = [];
-    let loading = false;
     let more = true;
 
 
@@ -71,7 +70,6 @@
         } catch (error) {
             error_g = true;
             more = false;
-            loading = false;
         }
     }
 

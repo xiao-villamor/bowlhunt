@@ -43,11 +43,11 @@ function tobSel(event) {
 }
 
 function setPercent(event) {
-    console.log(event.target.value)
     let percent = event.target.value;
-    console.log($tobaccosCreate)
 
-    //
+    if (percent > max) {
+        percent = max;
+    }
 
     tobaccosCreate.update(tobaccosCreate => {
         tobaccosCreate[$tobaccoSelected].percentage = percent;
@@ -58,7 +58,9 @@ function setPercent(event) {
 function changeTobaccoNum(event) {
     let num = event.target.value;
 
-    tobaccosCreate.set(defaulT);
+    if(num > 4){
+        num = 4;
+    }
 
     tobaccosCreate.update(tobaccosCreate => {
         //hide the tobaccos that are not needed

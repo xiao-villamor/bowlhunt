@@ -1,3 +1,5 @@
+import {prisma} from "../../../server/prisma.js";
+
 export const POST = async (event) => {
     //get the body from the event the number of likes and the id of the tobacco to update
 
@@ -10,12 +12,9 @@ export const POST = async (event) => {
 
     //iterate over the tobaccos
 
-    console.log(tobaccos.length);
-
     //if any of tobaccos has the field tobaccoId return error
 
     tobaccos.some(tobacco => {
-        console.log(tobacco.tobaccoId)
         console.log(tobacco.tobaccoId === null && tobacco.hidden === false)
         if (tobacco.tobaccoId === null && tobacco.hidden === false) {
             console.log("tobaccoId is missing")
@@ -30,23 +29,47 @@ export const POST = async (event) => {
     });
 
     //create a new mix with the tobaccos
-    const mix = prisma.mix.create({
+    const mix = await prisma.mix.create({
         data: {
-            tobaccos: {
-                create: tobaccos
-            }
+            name : "mix"
         }
     }).catch(e => {
-        console.log(e)
+        console.error(e)
         error = true
         response = new Response(JSON.stringify("error"), {
-            status: 500,
+            status: 404,
             headers: {
                 'Content-Type': 'application/json'
             }
         });
     })
 
+
+    if (!error){
+        const mixId = mix.id
+
+
+        for (const tobacco of tobaccos) {
+            prisma.mixToTobacco.create({
+                data: {
+                    mixId: mixId,
+                    tobaccoId: tobacco.tobaccoId,
+                    tobaccoPercentage: tobacco.percentage,
+
+                }
+            }).catch(e => {
+                console.log(e)
+                error = true
+                response = new Response(JSON.stringify("error"), {
+                    status: 500,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            })
+        };
+
+    }
 
     if(!error){
         response = new Response(JSON.stringify("ok"), {

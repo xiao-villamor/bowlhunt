@@ -37,14 +37,12 @@ export const GET = async (event) => {
                                                                 {
                                                                         Notes: {
                                                                                 hasSome: notes,
-                                                                                mode: 'insensitive',
 
                                                                         },
                                                                 },
                                                                 {
                                                                         flavours: {
                                                                                 hasSome: flavours,
-                                                                                mode: 'insensitive',
                                                                         },
                                                                 }
                                                         ]
@@ -57,7 +55,6 @@ export const GET = async (event) => {
                                 name: true,
                                 likes: true,
                                 createdAt: true,
-                                updatedAt: true,
                                 Tobacco: true,
                         }
                 });
@@ -77,7 +74,6 @@ export const GET = async (event) => {
                                 name: true,
                                 likes: true,
                                 createdAt: true,
-                                updatedAt: true,
                                 Tobacco: true,
                         }
                 });
