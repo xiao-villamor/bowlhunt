@@ -12,17 +12,17 @@ export async function GET() {
         >
             <!-- <url> elements go here -->
             <url>
-                <loc>https://www.bowlhunt.com.com/</loc>
+                <loc>https://www.bowlhunt.com/</loc>
                 <lastmod>2022-07-29</lastmod>
                 <priority>1</priority>
             </url>
             <url>
-                <loc>https://www.bowlhunt.com.com/new</loc>
+                <loc>https://www.bowlhunt.com/new</loc>
                 <lastmod>2022-07-29</lastmod>
                 <priority>1</priority>
             </url>
             <url>
-                <loc>https://www.bowlhunt.com.com/trending</loc>
+                <loc>https://www.bowlhunt.com/trending</loc>
                 <lastmod>2022-07-29</lastmod>
                 <priority>1</priority>
             </url>
