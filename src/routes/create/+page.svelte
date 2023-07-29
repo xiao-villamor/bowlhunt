@@ -5,6 +5,7 @@ import CreationMixCard from "$lib/components/CreationMixCard.svelte";
 import {brands} from "../../brands.js";
 import {tobaccosCreate} from "$lib/store.js";
 import {tobaccoSelected} from "$lib/store.js";
+import {mixName} from "$lib/store.js";
 import {onMount} from "svelte";
 import {defaulT} from "../../defaulT.js";
 
@@ -81,6 +82,7 @@ function changeTobaccoNum(event) {
 async function submitMix(){
 
     const url = `backend/createMix`
+    console.log($tobaccosCreate);
 
         //do a post request to the backend to like the newmixes the data shloud go in the body
     const response = await fetch(url, {
@@ -88,7 +90,7 @@ async function submitMix(){
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ tobaccos: $tobaccosCreate })
+        body: JSON.stringify({ tobaccos: $tobaccosCreate, name: $mixName })
 
     });
 

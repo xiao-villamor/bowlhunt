@@ -2,14 +2,14 @@
 
     import {tobaccosCreate} from "$lib/store.js";
     import {tobaccoSelected} from "$lib/store.js";
-
-    let name;
+    import {mixName} from "$lib/store.js";
 
     //create a funtion to on click change the colour of the div
     function clickTobacco(event){
-       console.log(event.currentTarget.id);
        tobaccoSelected.set(event.currentTarget.id);
     }
+
+
 
 </script>
 
@@ -57,7 +57,7 @@
 
             <div class="card-body w-full">
                 <div class="grid grid-cols-2 gap-2">
-                    <input type="text" placeholder="Mix Name" class="input input-ghost w-full max-w-md" />
+                    <input type="text" placeholder="Mix Name" class="input input-ghost w-full max-w-md" bind:value={$mixName}/>
                 </div>
             </div>
         </div>

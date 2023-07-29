@@ -25,7 +25,9 @@ export const tobaccosCreate = writable([]);
 tobaccosCreate.set(defaulT);
 
 
-export const tobaccoNum = writable(0);
+export const mixName = writable("");
 
 export const tobaccoSelected = writable(0);
+
+
 
