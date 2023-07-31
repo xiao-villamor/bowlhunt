@@ -7,15 +7,28 @@ export const POST = async (event) => {
     const parsedBody = JSON.parse(requestBody);
     const tobaccos = parsedBody.tobaccos;
     const name = parsedBody.name;
+
     let response
     let error = false
 
+    //print the tobaccos
+
+    if (name === null || name === "") {
+        error = true
+        response = new Response(JSON.stringify("Error the Name is missing"), {
+            status: 400,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
 
 
     tobaccos.some(tobacco => {
+        console.log(tobacco)
         if (tobacco.tobaccoId === null && tobacco.hidden === false) {
             error = true
-            response = new Response(JSON.stringify("tobaccoId is missing"), {
+            response = new Response(JSON.stringify("Error some tobacco are missing"), {
                 status: 400,
                 headers: {
                     'Content-Type': 'application/json'
@@ -24,7 +37,8 @@ export const POST = async (event) => {
         }
     });
 
-    if (error !== false) {
+
+    if (error === false) {
         try {
             const mix = await prisma.mix.create({
                 data: {
@@ -49,7 +63,7 @@ export const POST = async (event) => {
         } catch (e) {
             console.error(e);
             error = true;
-            response = new Response(JSON.stringify("error"), {
+            response = new Response(JSON.stringify("Error while creating the mix"), {
                 status: 500,
                 headers: {
                     "Content-Type": "application/json",
