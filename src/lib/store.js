@@ -21,7 +21,6 @@ export const notes = writable([]);
 
 export const tobaccosCreate = writable([]);
 
-//set a default value for tobaccosCreate from a copy of defaulT.js
 tobaccosCreate.set(defaulT);
 
 

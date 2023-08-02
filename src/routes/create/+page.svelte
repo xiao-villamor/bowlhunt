@@ -6,7 +6,8 @@ import {brands} from "../../brands.js";
 import {tobaccosCreate} from "$lib/store.js";
 import {tobaccoSelected} from "$lib/store.js";
 import {mixName} from "$lib/store.js";
-import {onMount} from "svelte";
+import {onDestroy, onMount} from "svelte";
+
 import {defaulT} from "../../defaulT.js";
 
 let brand = "";
@@ -16,6 +17,7 @@ let error = false;
 let errorText = "";
 
 const alertElement = document.querySelector('.alert');
+
 if (alertElement) {
     setTimeout(() => {
         alertElement.classList.add('fade-out');
@@ -26,7 +28,6 @@ if (alertElement) {
 //create a function to get the value from the select
 async function getBrand(event) {
     brand = event.target.value;
-    console.log(brand);
     await getTobaccos();
 }
 
@@ -63,6 +64,7 @@ function setPercent(event) {
         tobaccosCreate[$tobaccoSelected].percentage = percent;
         return tobaccosCreate;
     })
+
 }
 
 function changeTobaccoNum(event) {
@@ -105,6 +107,18 @@ function checkPercentage(){
 }
 
 async function submitMix(){
+
+    //if the name is empty then show an error
+    if($mixName === ""){
+        error = true;
+        errorText = "The name cannot be empty";
+        setTimeout(() => {
+            error = false;
+        }, 3000);
+        return;
+    }
+
+
     if(!checkPercentage()){
         error = true;
         errorText = "The total percentage must be 100";
@@ -113,6 +127,7 @@ async function submitMix(){
         }, 3000);
         return;
     }
+
 
     const url = `backend/createMix`
 
@@ -141,6 +156,12 @@ async function submitMix(){
 }
 
 onMount(async () => {
+
+    tobaccosCreate.set(defaulT);
+
+})
+
+onDestroy(() => {
     tobaccosCreate.set(defaulT);
 })
 
