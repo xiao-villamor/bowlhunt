@@ -16,4 +16,10 @@ export const brands = [
     "Adalya",
     "Anda",
     "Overdozz",
+    "Azure",
+    "Sebero",
+    "Kismet Noir",
+    "Serbetli",
+    "Mazaya"
+
 ]
